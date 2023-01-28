@@ -5,6 +5,8 @@
  * using quick sort algorithm
  * @array: list of numbers
  * @size: size of array
+ *
+ * Return: Nothing
  */
 
 void quick_sort(int *array, size_t size)
@@ -27,6 +29,8 @@ void quick_sort(int *array, size_t size)
  * @low: first index of array
  * @high: last index of array
  * @size: size of array
+ *
+ * Return: Nothing
  */
 void my_sort(int *array, int low, int high, size_t size)
 {
@@ -46,6 +50,7 @@ void my_sort(int *array, int low, int high, size_t size)
  * @low: first index of array
  * @high: lowest index of array
  * @size: size of array
+ *
  * Return: position of pivot in array
  */
 int partition(int *array, int low, int high, size_t size)
@@ -77,6 +82,8 @@ int partition(int *array, int low, int high, size_t size)
  * @array: list of ints
  * @i: first element to swap
  * @j: second element to swap
+ *
+ * Return: Nothing
  */
 void swap(int *array, int i, int j)
 {

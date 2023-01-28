@@ -4,8 +4,9 @@
 * shell_sort - Sorts array using Knuth Sequence of Shell sort
 * @array: Array to be sorted
 * @size: Size of array to sort
+*
+* Return: Nothing
 */
-
 void shell_sort(int *array, size_t size)
 {
 	size_t i, gap = 1, k;

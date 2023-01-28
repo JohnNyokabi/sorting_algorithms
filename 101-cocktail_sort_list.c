@@ -28,8 +28,9 @@ void swapem(listint_t *l, listint_t *r, listint_t **h)
 /**
 * cocktail_sort_list - sorts dlist using cocktail sort
 * @list: Head to dlist
+*
+* Return: Nothing
 */
-
 void cocktail_sort_list(listint_t **list)
 {
 	listint_t *temp;
