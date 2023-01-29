@@ -1,95 +1,73 @@
 #include "sort.h"
 
 /**
- * quick_sort - function that sorts an array of ints in ascending order
- * using quick sort algorithm
- * @array: list of numbers
- * @size: size of array
+ * partition - array partition
+ * @array: array to sort
+ * @first: first position
+ * @last: last position
+ * @size: array size
  *
- * Return: Nothing
+ * Return: int pivot index
  */
-
-void quick_sort(int *array, size_t size)
+int partition(int *array, int first, int last, size_t size)
 {
-	int low;
-	int high;
+	int i = first - 1, aux, j;
 
-	if (array == NULL || size == 0)
-		return;
-
-	low = 0;
-	high = size - 1;
-
-	my_sort(array, low, high, size);
-}
-
-/**
- * my_sort - sorts array using low / high positions
- * @array: list of numbers
- * @low: first index of array
- * @high: last index of array
- * @size: size of array
- *
- * Return: Nothing
- */
-void my_sort(int *array, int low, int high, size_t size)
-{
-	int p;
-
-	if (low < high)
+	for (j = first; j <= last - 1; j++)
 	{
-		p = partition(array, low, high, size);
-		my_sort(array, low, p - 1, size);
-		my_sort(array, p + 1, high, size);
-	}
-}
-
-/**
- * partition - sections an array using Lomuto quick_sort algo
- * @array: list of integers
- * @low: first index of array
- * @high: lowest index of array
- * @size: size of array
- *
- * Return: position of pivot in array
- */
-int partition(int *array, int low, int high, size_t size)
-{
-	int pivot;
-	int i;
-	int j;
-
-	pivot = array[high];
-	i = low - 1;
-
-	for (j = low; j <= high; j++)
-	{
-		if (array[j] <= pivot)
+		if (array[j] < array[last])
 		{
 			i++;
-			if (i != j)
+			if (i < j)
 			{
-				swap(array, i, j);
+				aux = array[i];
+				array[i] = array[j];
+				array[j] = aux;
 				print_array(array, size);
 			}
 		}
 	}
-	return (i);
+	if (array[i + 1] > array[last])
+	{
+		aux = array[i + 1];
+		array[i + 1] = array[last];
+		array[last] = aux;
+		print_array(array, size);
+	}
+
+	return (i + 1);
 }
 
 /**
- * swap - swap values in array
- * @array: list of ints
- * @i: first element to swap
- * @j: second element to swap
+ * qs - sorts an array of integers recursively
+ * @array: array to sort
+ * @first: first position
+ * @last: last position
+ * @size: array size
  *
  * Return: Nothing
  */
-void swap(int *array, int i, int j)
+void qs(int *array, int first, int last, size_t size)
 {
-	int temp;
+	int pivot;
 
-	temp = array[i];
-	array[i] = array[j];
-	array[j] = temp;
+	if (first < last)
+	{
+		pivot = partition(array, first, last, size);
+		qs(array, first, pivot - 1, size);
+		qs(array, pivot + 1, last, size);
+	}
+}
+
+/**
+ * quick_sort - sorts an array of integers using the Quick
+ * sort algorithm in ascending order
+ * @array: array to sort
+ * @size: array size
+ *
+ * Return: Nothing
+ */
+void quick_sort(int *array, size_t size)
+{
+	qs(array, 0, size - 1, size);
 }

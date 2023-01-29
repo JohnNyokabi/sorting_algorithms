@@ -1,5 +1,7 @@
 #include "sort.h"
 
+void counting_sort_r(int *array, size_t size, int pos, int *out, int *ca);
+
 /**
 * findmax - Finds the maximum value in an array
 * @array: array to find max value of
